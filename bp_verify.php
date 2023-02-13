@@ -13,15 +13,15 @@
 <?php
 //Verify Response, so you can use it in your template.
 if (isset ($_POST['ResCode']) && $_POST['ResCode']=="0"){
-	$refid=$_POST['RefId'];
-	$rescode=$_POST['ResCode'];
-	$saleorderid=$_POST['SaleOrderId'];
-	$salereferenceid=$_POST['SaleReferenceId'];
+	$refId=$_POST['RefId'];
+	$resCode=$_POST['ResCode'];
+	$saleOrderId=$_POST['SaleOrderId'];
+	$saleReferenceId=$_POST['SaleReferenceId'];
     $namespace='http://interfaces.core.sw.bps.com/';
 
-    $orderId =$saleorderid;
-    $verifySaleOrderId =$saleorderid;
-    $verifySaleReferenceId =$salereferenceid;
+    $orderId =$saleOrderId;
+    $verifySaleOrderId =$saleOrderId;
+    $verifySaleReferenceId =$saleReferenceId;
 
     date_default_timezone_set('Asia/Tehran');
     require 'BPM_PGW.php';
@@ -29,9 +29,9 @@ if (isset ($_POST['ResCode']) && $_POST['ResCode']=="0"){
     $p->terminalId=0;//long
     $p->userName='';//string
     $p->userPassword='';//string
-    $p->orderId=$saleorderid;//long // Attention: Increase it per call
-    $p->saleOrderId=$saleorderid;//long
-    $p->saleReferenceId=$salereferenceid;//string
+    $p->orderId=$saleOrderId;//long // Attention: Increase it per call
+    $p->saleOrderId=$saleOrderId;//long
+    $p->saleReferenceId=$saleReferenceId;//string
 
     $c =new BPM();
     $bpVerifyRequestResponse= $c->bpVerifyRequest($p);
@@ -44,9 +44,9 @@ if (isset ($_POST['ResCode']) && $_POST['ResCode']=="0"){
         $s->terminalId=0;//long
         $s->userName='';//string
         $s->userPassword='';//string
-        $s->orderId=$saleorderid;//long // Attention: Increase it per call
-        $s->saleOrderId=$saleorderid;//long
-        $s->saleReferenceId=$salereferenceid;//string
+        $s->orderId=$saleOrderId;//long // Attention: Increase it per call
+        $s->saleOrderId=$saleOrderId;//long
+        $s->saleReferenceId=$saleReferenceId;//string
         $bpSettleRequestResponse= $c->bpSettleRequest($s);
         $resultSettle  = $bpSettleRequestResponse->return;
     }
